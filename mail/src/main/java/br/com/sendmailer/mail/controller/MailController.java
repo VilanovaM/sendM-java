@@ -1,0 +1,28 @@
+package br.com.sendmailer.mail.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.sendmailer.mail.model.EmailDetails;
+import br.com.sendmailer.mail.service.EmailService;
+
+@RestController
+@RequestMapping 
+public class MailController {
+
+    @Autowired
+    private EmailService emailService;
+
+    @PostMapping("/sendMail")
+    public String sendMail(@RequestBody EmailDetails details) {
+        return emailService.sendMail(details); 
+    }
+
+    @PostMapping("/sendMailWithAttatchment")
+    public String sendMailWithAttatchment(@RequestBody EmailDetails details) {
+        return emailService.sendMailWithAttachment(details);
+    }
+}
